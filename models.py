@@ -136,7 +136,6 @@ def cnn_model_fn(features, labels, mode, params):
     #forget_bias = params.forget_bias
     #keep_prob = params.keep_prob
 
-    print('xxxxxxxxxxxxxxxxxxxxxxx ------------------------- vvvvvvvvvvvvvvvvvvvvv', window_size)
 
     # word_id_vector
     word_id_vector = preprocessing.process_text(features[pm.TEXT_FEATURE_NAME])

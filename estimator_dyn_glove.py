@@ -10,7 +10,7 @@ import preprocessing
 import params as pm
 
 # Usage
-# $: python3 lestimator_dyn_glove.py 'model-name'
+# $: python3 estimator_dyn_glove.py 'model-name'
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
