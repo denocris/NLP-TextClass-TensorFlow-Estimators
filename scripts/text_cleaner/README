@@ -1,0 +1,24 @@
+Text cleaner: how to make your raw textual data nice and tidy.
+
+How do I use it?
+
+1) Move data you want to clean in text_cleaner folder.
+2) Open terminal
+3) ./text_cleaner yourinput.file
+4) "output" and "stats" files are produced in the same folder
+
+v1.0
+Basic data cleaning. 
+
+v1.1
+Added option to remove lines composed by one single alphabetic word.
+
+v1.2
+C program producing simple descriptive statitics. To be improved.
+
+v1.3
+C program slicing long sentences. Cutpoint preferrably adjustable to the mean sentence length reported in stats.
+
+v1.4
+Re-run awk script after slicing to make the output tidy.
+
