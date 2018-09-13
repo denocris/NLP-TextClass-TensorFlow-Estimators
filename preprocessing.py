@@ -97,9 +97,7 @@ def load_glove_embeddings(word_index, model):
     embedding_matrix = np.random.uniform(-1, 1, size=(pm.N_WORDS, 300))
     num_loaded = 0
     for w, i in word_index.items():
-        #print('-------- w, i', w, i, type(w))
         vv = embeddings.get(str(w))
-        #print('---------  vvv  vvv   ----------', vv)
         if vv is not None and i < pm.N_WORDS:
             embedding_matrix[i] = vv
             num_loaded += 1
