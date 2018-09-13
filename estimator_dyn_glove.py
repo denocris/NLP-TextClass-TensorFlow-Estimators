@@ -12,10 +12,11 @@ import params as pm
 # Usage
 # $: python3 estimator_dyn_glove.py 'model-name'
 
+
 tf.logging.set_verbosity(tf.logging.INFO)
 
-
-
+# Create estimator. Models defined in models. pm: parameters in parameterself.
+#
 def create_estimator(run_config, hparams):
     estimator = tf.estimator.Estimator(model_fn=pm.MODEL_FN,
                                   params=hparams,
@@ -25,7 +26,6 @@ def create_estimator(run_config, hparams):
     print("Estimator Type: {}".format(type(estimator)))
     print("")
     return estimator
-
 
 
 def serving_input_fn():
@@ -43,6 +43,7 @@ def serving_input_fn():
     return tf.estimator.export.ServingInputReceiver(
         features, receiver_tensor)
 
+#__main__
 
 if __name__ == "__main__":
 
@@ -54,6 +55,8 @@ if __name__ == "__main__":
     # def my_initializer(shape=None, dtype=tf.float32, partition_info=None):
     # assert dtype is tf.float32
     # return embedding_matrix
+
+# initialize the estimator
 
     def my_initializer(shape=None, dtype=tf.float32, partition_info=None):
         assert dtype is tf.float32

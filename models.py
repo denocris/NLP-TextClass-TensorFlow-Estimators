@@ -142,14 +142,12 @@ def cnn_model_fn(features, labels, mode, params):
     # print(' - - - - - - -  - - - - - - -  - - - - -', word_id_vector[0])
     # feature_length_array = [len(np.nonzero(word_id_vector[i])[0]) for i in range(BATCH_SIZE)]
     feature_length_array = tf.count_nonzero(word_id_vector, 1)
-
     # layer to take each word_id and convert it into vector (embeddings)
     word_embeddings = tf.contrib.layers.embed_sequence(word_id_vector,
                                                  vocab_size=pm.N_WORDS,
                                                  embed_dim=embedding_size,
                                                  initializer=embedding_initializer,
                                                  trainable=False)
-
 
     training = (mode == tf.estimator.ModeKeys.TRAIN)
     dropout_emb = tf.layers.dropout(inputs=word_embeddings, rate=0.2, training=training)

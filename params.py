@@ -8,8 +8,8 @@ import tensorflow as tf
 # ------------ ANN MODEL -------------
 # ------------------------------------
 
-MODEL_FN = models.lstm_model_fn
-#MODEL_FN = models.cnn_model_fn
+#MODEL_FN = models.lstm_model_fn
+MODEL_FN = models.cnn_model_fn
 
 
 # ------------------------------------
@@ -34,9 +34,8 @@ TEXT_FEATURE_NAME = 'sentence'
 TARGET_NAME = 'class'
 TARGET_LABELS = ['0', '1']
 #WEIGHT_COLUNM_NAME = 'weight'
-TARGET_LABELS = ['0', '1']
 
-MAX_DOCUMENT_LENGTH = 20
+# fixed size
 EMBEDDING_SIZE = 300
 
 # ------------------------------------
