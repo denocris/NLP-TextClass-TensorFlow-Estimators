@@ -151,7 +151,7 @@ def model_fn(features, labels, mode, params):
 
     # apply pooling
     words_conv = tf.reduce_max(input_tensor=words_conv, axis=1)
-    print('----------------------------- 2', words_conv.get_shape())
+    #print('----------------------------- 2', words_conv.get_shape())
 
     # words_conv_shape = words_conv.get_shape()
     # dim = words_conv_shape[1] * words_conv_shape[2]
@@ -282,11 +282,11 @@ if __name__ == "__main__":
     MODEL_NAME = str(sys.argv[1])
     model_dir = '/home/asr/Data/classif_task/trained_models/{}'.format(MODEL_NAME)
 
-    TRAIN_DATA_FILES_PATTERN = '/home/asr/Data/classif_task/dev_data/train-data-maxlength16.tsv'
-    VALID_DATA_FILES_PATTERN = '/home/asr/Data/classif_task/dev_data/valid-data-maxlength16.tsv'
+    TRAIN_DATA_FILES_PATTERN = '/home/asr/Data/classif_task/dev_data/train-data-maxlength16-subtitles.tsv'
+    VALID_DATA_FILES_PATTERN = '/home/asr/Data/classif_task/dev_data/valid-data-maxlength16-subtitles.tsv'
 
-    VOCAB_LIST_FILE = '/home/asr/Data/classif_task/dev_data/vocab_list_13k_2k_mystop_nodgts.tsv'
-    N_WORDS_FILE = '/home/asr/Data/classif_task/dev_data/n_words_13k_2k_mystop_nodgts.tsv'
+    VOCAB_LIST_FILE = '/home/asr/Data/classif_task/dev_data/vocab_list_5k_2k_mystop_nodgts.tsv'
+    N_WORDS_FILE = '/home/asr/Data/classif_task/dev_data/n_words_5k_2k_mystop_nodgts.tsv'
     DEV_DATA_PATH="/home/asr/Data/classif_task/dev_data/"
 
     RESUME_TRAINING = False
@@ -304,7 +304,7 @@ if __name__ == "__main__":
     # ------------------------------------
     # ------------- METADATA -------------
     # ------------------------------------
-    MAX_DOCUMENT_LENGTH = 10
+    MAX_DOCUMENT_LENGTH = 20
     PAD_WORD = '#=KS=#'
     HEADER = ['sentence', 'class']
     HEADER_DEFAULTS = [['NA'], ['NA']]
