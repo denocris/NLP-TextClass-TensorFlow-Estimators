@@ -11,7 +11,6 @@ def lstm_model_fn(features, labels, mode, params):
     embedding_size = params.embedding_size
     embedding_initializer = params.embedding_initializer
     forget_bias = params.forget_bias
-    keep_prob = params.keep_prob
     learning_rate = params.learning_rate
 
     # word_id_vector
@@ -131,10 +130,10 @@ def cnn_model_fn(features, labels, mode, params):
     embedding_size = params.embedding_size
     embedding_initializer = params.embedding_initializer
     window_size = params.window_size
+    dropout_rate = params.dropout_rate
     stride = int(window_size/2)
     filters = params.filters
-    #forget_bias = params.forget_bias
-    #keep_prob = params.keep_prob
+
 
 
     # word_id_vector
@@ -152,10 +151,11 @@ def cnn_model_fn(features, labels, mode, params):
 
 
     training = (mode == tf.estimator.ModeKeys.TRAIN)
-    dropout_emb = tf.layers.dropout(inputs=word_embeddings, rate=0.2, training=training)
+    dropout_emb = tf.layers.dropout(inputs=word_embeddings, rate=dropout_rate, training=training)
     # convolution: a sentence can be seen like an image with dimansion length x 1 (that's why conv1d)
     words_conv_1 = tf.layers.conv1d(dropout_emb, filters=filters, kernel_size=4,
                                   strides=stride, padding='SAME', activation=tf.nn.relu)
+
 
     max_conv_1 = tf.reduce_max(input_tensor=words_conv_1, axis=1)
 
@@ -165,14 +165,19 @@ def cnn_model_fn(features, labels, mode, params):
     max_conv_2 = tf.reduce_max(input_tensor=words_conv_2, axis=1)
 
     words_conv_3 = tf.layers.conv1d(dropout_emb, filters=filters, kernel_size=2,
-                                          strides=stride, padding='SAME', activation=tf.nn.relu)
+                                          strides=stride, padding='VALID', activation=tf.nn.relu)
 
     max_conv_3 = tf.reduce_max(input_tensor=words_conv_3, axis=1)
 
-    print('----------------------------- 1', words_conv_1.get_shape())
-    print('----------------------------- max', max_conv_1.get_shape())
-    print('----------------------------- 1', words_conv_2.get_shape())
-    print('----------------------------- 1', words_conv_3.get_shape())
+    if pm.PRINT_SHAPE == True:
+        print('----------------------------->  words_conv_1:', words_conv_1.get_shape())
+        print('----------------------------->  max_conv_1:', max_conv_1.get_shape())
+        print('----------------------------->  words_conv_2:', words_conv_2.get_shape())
+        print('----------------------------->  max_conv_2:', max_conv_2.get_shape())
+        print('----------------------------->  words_conv_3:', words_conv_3.get_shape())
+        print('----------------------------->  max_conv_3:', max_conv_3.get_shape())
+
+
     # apply pooling
     #words_conv = tf.reduce_max(input_tensor=words_conv, axis=1)
     #print('----------------------------- 2', words_conv.get_shape())
@@ -185,7 +190,6 @@ def cnn_model_fn(features, labels, mode, params):
     # input_layer = tf.reshape(words_conv,[-1, dim])
     input_layer = words_conv
 
-    print('----------------------------- 3', input_layer.get_shape())
     if hidden_units is not None:
 
         # Create a fully-connected layer-stack based on the hidden_units in the params
@@ -194,7 +198,7 @@ def cnn_model_fn(features, labels, mode, params):
                                                 stack_args= hidden_units,
                                                 activation_fn=tf.nn.relu)
 
-        hidden_layers = tf.layers.dropout(inputs=hidden_layers, rate=0.2, training=training)
+        hidden_layers = tf.layers.dropout(inputs=hidden_layers, rate=dropout_rate, training=training)
         # print("hidden_layers: {}".format(hidden_layers)) # (?, last-hidden-layer-size)
 
     else:
@@ -206,7 +210,6 @@ def cnn_model_fn(features, labels, mode, params):
                              activation=None)
     # Provide an estimator spec for `ModeKeys.PREDICT`.
     if mode == tf.estimator.ModeKeys.PREDICT:
-        #print("-------------------- Predicting ---------------------")
         probabilities = tf.nn.softmax(logits)
         predicted_indices = tf.argmax(probabilities, 1)
 

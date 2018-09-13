@@ -68,7 +68,7 @@ if __name__ == "__main__":
         learning_rate = pm.LEARNING_RATE,
         embedding_initializer = my_initializer,
         forget_bias=pm.FORGET_BIAS,
-        keep_prob = pm.KEEP_PROB,
+        dropout_rate = pm.DROPOUT_RATE,
         hidden_units=pm.HIDDEN_UNITS,
         window_size = pm.WINDOW_SIZE,
         filters = pm.FILTERS,)
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     run_config = tf.estimator.RunConfig(
         log_step_count_steps=5000,
         tf_random_seed=19830610,
-        model_dir=pm.model_dir)
+        model_dir=pm.MODEL_DIR)
 
     # train_spec = tf.estimator.TrainSpec(
     #     input_fn = lambda: preprocessing.input_fn(
@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
     if not pm.RESUME_TRAINING:
         print("Removing previous artifacts...")
-        shutil.rmtree(pm.model_dir, ignore_errors=True)
+        shutil.rmtree(pm.MODEL_DIR, ignore_errors=True)
     else:
         print("Resuming training...")
 
