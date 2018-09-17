@@ -26,7 +26,7 @@ def create_estimator(run_config, hparams):
     print("")
     return estimator
 
-
+# test
 
 def serving_input_fn():
     # At serving time, it accepts inference requests and prepares them for the model.
