@@ -12,11 +12,10 @@ import params as pm
 # Usage
 # $: python3 estimator_dyn_glove.py 'model-name'
 
-
 tf.logging.set_verbosity(tf.logging.INFO)
 
-# Create estimator. Models defined in models. pm: parameters in parameterself.
-#
+
+
 def create_estimator(run_config, hparams):
     estimator = tf.estimator.Estimator(model_fn=pm.MODEL_FN,
                                   params=hparams,
@@ -27,6 +26,7 @@ def create_estimator(run_config, hparams):
     print("")
     return estimator
 
+# test
 
 def serving_input_fn():
     # At serving time, it accepts inference requests and prepares them for the model.
@@ -43,7 +43,6 @@ def serving_input_fn():
     return tf.estimator.export.ServingInputReceiver(
         features, receiver_tensor)
 
-#__main__
 
 if __name__ == "__main__":
 
@@ -55,8 +54,6 @@ if __name__ == "__main__":
     # def my_initializer(shape=None, dtype=tf.float32, partition_info=None):
     # assert dtype is tf.float32
     # return embedding_matrix
-
-# initialize the estimator
 
     def my_initializer(shape=None, dtype=tf.float32, partition_info=None):
         assert dtype is tf.float32
@@ -71,7 +68,7 @@ if __name__ == "__main__":
         learning_rate = pm.LEARNING_RATE,
         embedding_initializer = my_initializer,
         forget_bias=pm.FORGET_BIAS,
-        keep_prob = pm.KEEP_PROB,
+        dropout_rate = pm.DROPOUT_RATE,
         hidden_units=pm.HIDDEN_UNITS,
         window_size = pm.WINDOW_SIZE,
         filters = pm.FILTERS,)
@@ -79,7 +76,7 @@ if __name__ == "__main__":
     run_config = tf.estimator.RunConfig(
         log_step_count_steps=5000,
         tf_random_seed=19830610,
-        model_dir=pm.model_dir)
+        model_dir=pm.MODEL_DIR)
 
     # train_spec = tf.estimator.TrainSpec(
     #     input_fn = lambda: preprocessing.input_fn(
@@ -113,7 +110,7 @@ if __name__ == "__main__":
 
     if not pm.RESUME_TRAINING:
         print("Removing previous artifacts...")
-        shutil.rmtree(pm.model_dir, ignore_errors=True)
+        shutil.rmtree(pm.MODEL_DIR, ignore_errors=True)
     else:
         print("Resuming training...")
 
