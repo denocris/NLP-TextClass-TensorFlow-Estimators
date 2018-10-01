@@ -53,22 +53,21 @@ if __name__ == "__main__":
     GLOVE_PATH = os.path.join(os.getcwd(),'glove-ita/glove_WIKI')
     model = Word2Vec.load(GLOVE_PATH)
 
-    # def my_initializer(shape=None, dtype=tf.float32, partition_info=None):
-    # assert dtype is tf.float32
-    # return embedding_matrix
 
-    def my_initializer(shape=None, dtype=tf.float32, partition_info=None):
+
+    def my_initializer(shape=None, dtype=tf.float32, partition_info=None, glove_activation=False):
         assert dtype is tf.float32
         embedding_matrix = preprocessing.load_glove_embeddings(word_index, model)
         return embedding_matrix
 
+
     hparams  = tf.contrib.training.HParams(
         num_epochs = pm.NUM_EPOCHS,
         batch_size = pm.BATCH_SIZE,
-        embedding_size = 300,
+        embedding_size = pm.EMBEDDING_SIZE,
         max_steps = pm.TOTAL_STEPS,
         learning_rate = pm.LEARNING_RATE,
-        embedding_initializer = my_initializer,
+        embedding_initializer = my_initializer if pm.GLOVE_ACTIVE==True else None,
         forget_bias=pm.FORGET_BIAS,
         dropout_rate = pm.DROPOUT_RATE,
         hidden_units=pm.HIDDEN_UNITS,

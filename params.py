@@ -23,7 +23,6 @@ BATCH_SIZE = 128
 EVAL_AFTER_SEC = 120
 TOTAL_STEPS = int((TRAIN_SIZE/BATCH_SIZE)*NUM_EPOCHS)
 
-
 # ------------------------------------
 # ------------- METADATA -------------
 # ------------------------------------
@@ -34,7 +33,7 @@ TEXT_FEATURE_NAME = 'sentence'
 TARGET_NAME = 'class'
 TARGET_LABELS = ['0', '1']
 #WEIGHT_COLUNM_NAME = 'weight'
-
+GLOVE_ACTIVE=True
 MAX_DOCUMENT_LENGTH = 20
 EMBEDDING_SIZE = 300
 
