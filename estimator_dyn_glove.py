@@ -112,7 +112,7 @@ if __name__ == "__main__":
         print("Removing previous artifacts...")
         shutil.rmtree(pm.MODEL_DIR, ignore_errors=True)
     else:
-        print("Resuming training...")
+        print("Resuming traconstraintining...")
 
     time_start = datetime.datetime.utcnow()
     print("Experiment started at {}".format(time_start.strftime("%H:%M:%S")))
