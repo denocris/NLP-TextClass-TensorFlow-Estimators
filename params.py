@@ -7,9 +7,9 @@ import tensorflow as tf
 # ------------------------------------
 # ------------ ANN MODEL -------------
 # ------------------------------------
-
-MODEL_FN = models.lstm_model_fn
-#MODEL_FN = models.cnn_model_fn
+#
+#MODEL_FN = models.lstm_model_fn
+MODEL_FN = models.cnn_model_fn
 
 PRINT_SHAPE = False
 # ------------------------------------
@@ -18,7 +18,7 @@ PRINT_SHAPE = False
 RESUME_TRAINING = False
 MULTI_THREADING = True
 TRAIN_SIZE = 54045 #317890 #159598 #1429485
-NUM_EPOCHS = 5
+NUM_EPOCHS = 10
 BATCH_SIZE = 128
 EVAL_AFTER_SEC = 120
 TOTAL_STEPS = int((TRAIN_SIZE/BATCH_SIZE)*NUM_EPOCHS)
@@ -41,9 +41,9 @@ EMBEDDING_SIZE = 300
 # ------------------------------------
 # ------------- TRAINING PARAMS ------------
 # ------------------------------------
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.001
 # For LSTM0
-FORGET_BIAS=1.0
+FORGET_BIAS = 1.0
 # For LSTM0
 DROPOUT_RATE = 0.2
 # For LSTM it refers to the size of the Cell, for CNN model instead are the FC layers

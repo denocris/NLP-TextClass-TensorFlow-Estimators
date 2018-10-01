@@ -12,6 +12,8 @@ import params as pm
 # Usage
 # $: python3 estimator_dyn_glove.py 'model-name'
 
+# Main script
+
 tf.logging.set_verbosity(tf.logging.INFO)
 
 

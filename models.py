@@ -4,6 +4,8 @@ import preprocessing
 import params as pm
 import tensorflow as tf
 
+# List of Models
+
 def lstm_model_fn(features, labels, mode, params):
 
     hidden_units = params.hidden_units
