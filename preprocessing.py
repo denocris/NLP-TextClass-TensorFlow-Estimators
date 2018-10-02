@@ -20,7 +20,7 @@ def parse_tsv_row(tsv_row):
     target = features.pop(pm.TARGET_NAME)
     # Uncomment if dataset not already balanced
     #features[WEIGHT_COLUNM_NAME] =  tf.cond( tf.equal(target,'spam'), lambda: 6.6, lambda: 1.0 )
-    return features, target
+    return features, target 
 
 
 def parse_label_column(label_string_tensor):
