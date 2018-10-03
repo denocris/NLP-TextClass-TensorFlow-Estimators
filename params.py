@@ -1,3 +1,5 @@
+# New repo organization
+
 import os, sys
 import models
 import tensorflow as tf
