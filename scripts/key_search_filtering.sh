@@ -8,8 +8,7 @@
 # Usage:$: time bash key_search_v1.sh <text_to_filter> <keys.txt>
 
 # remove old key_words_output
-rm -rf key-output
-rm -rf key-count
+rm -rf key_count
 
 text=$1
 keysfile=$2
@@ -20,17 +19,29 @@ declare -a keys
 readarray keys < $keysfile
 
 
-prec=0
+init_wc=$(cat $text | wc -l)
+echo "------ init_wc ---------" $init_wc
 tot=0
+
 ## now loop through the key words
 for key in "${keys[@]}"
 do
    echo $key
-   cat $text | grep -wP $key >> key-output
-   num_sentences=$(($(cat key-output | wc -l)-$prec))
-   echo -e $key '\t' $num_sentences >> key-count
-   prec=$(($prec + $num_sentences))
+   #echo $(cat $text | grep -w "$")
+   rm -rf key_output
+   cat $text | grep -vwP $key >> key_output
+   rm -rf key_output_tmp
+   out_wc=$(cat key_output | wc -l)
+   num_sentences=$(($init_wc-$out_wc))
+   echo "-------- num --------" $num_sentences
+   echo -e $key '\t' $num_sentences >> key_count
+   init_wc=$out_wc
+   echo "-------- init_wc --------" $init_wc
    tot=$(($tot + $num_sentences))
+   echo "-------- tot --------" $tot
+   cp key_output key_output_tmp
+   text=key_output_tmp
 done
 
-echo -e 'total' '\t' $tot >> key-count
+echo -e 'total' '\t' $tot >> key_count
+rm -rf key_output_tmp

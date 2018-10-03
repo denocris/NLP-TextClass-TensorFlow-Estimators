@@ -13,7 +13,7 @@ MODEL_FN = models.lstm_model_fn
 
 PRINT_SHAPE = False
 # ------------------------------------
-# ----- SETUP TRAINING--------
+# ----- SETUP TRAINING---------------- export CUDA_VISIBLE_DEVICES=
 # ------------------------------------
 RESUME_TRAINING = False
 MULTI_THREADING = True
@@ -51,7 +51,7 @@ FORGET_BIAS = 1.0
 # For LSTM0
 DROPOUT_RATE = 0.2
 # For LSTM it refers to the size of the Cell, for CNN model instead are the FC layers
-HIDDEN_UNITS = [64, 32, 16] #[96, 64, 16], None
+HIDDEN_UNITS = [64,32,16] #[96, 64, 16], None
 # For CNN, kernel size
 WINDOW_SIZE = 3
 # For CNN, number of filters (i.e. feature maps)

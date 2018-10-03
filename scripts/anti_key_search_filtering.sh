@@ -1,14 +1,13 @@
-anti_key_output#!/bin/sh
+#!/bin/sh
 
 # DESCRIPTION
-# This script performs an 'anti key search' filtering. i.e. it filters
-# from a corpus only rows that do NOT contain selected keys/words
-# which are listed in a .txt file
+# This script performs a 'key search' filtering. i.e. filters
+# from a corpus only rows that contains selected keys/words
 
-# Usage:$: time bash anti_key_search_v1.sh <text_to_filter> <keys.txt>
+# Usage:$: time bash key_search_v1.sh text_to_filter keys.txt
 
 # remove old key_words_output
-rm -rf anti_key_count
+rm -rf key_count
 
 text=$1
 keysfile=$2
