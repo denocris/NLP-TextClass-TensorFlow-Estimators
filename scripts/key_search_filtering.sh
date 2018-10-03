@@ -1,10 +1,11 @@
 #!/bin/sh
 
 # DESCRIPTION
-# This script performs a 'key search' filtering. i.e. filters
-# from a corpus only rows that contains selected keys/words
+# This script performs a 'key search' filtering. i.e. it filters
+# from a corpus only rows that contain selected keys/words
+# which are listed in a .txt file
 
-# Usage:$: time bash key_search_v1.sh text_to_filter keys.txt
+# Usage:$: time bash key_search_v1.sh <text_to_filter> <keys.txt>
 
 # remove old key_words_output
 rm -rf key_count

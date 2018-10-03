@@ -27,19 +27,20 @@ for key in "${keys[@]}"
 do
    echo $key
    #echo $(cat $text | grep -w "$")
-   rm -rf key_output
-   cat $text | grep -vwP $key >> key_output
-   rm -rf key_output_tmp
-   out_wc=$(cat key_output | wc -l)
+   rm -rf anti_key_output
+   cat $text | grep -vwP $key >> anti_key_output
+   rm -rf anti_key_output_tmp
+   out_wc=$(cat anti_key_output | wc -l)
    num_sentences=$(($init_wc-$out_wc))
    echo "-------- num --------" $num_sentences
-   echo -e $key '\t' $num_sentences >> key_count
+   echo -e $key '\t' $num_sentences >> anti_key_count
    init_wc=$out_wc
    echo "-------- init_wc --------" $init_wc
    tot=$(($tot + $num_sentences))
    echo "-------- tot --------" $tot
-   cp key_output key_output_tmp
-   text=key_output_tmp
+   cp anti_key_output anti_key_output_tmp
+   text=anti_key_output_tmp
 done
 
-echo -e 'total' '\t' $tot >> key_count
+
+echo -e 'total' '\t' $tot >> anti_key_count
