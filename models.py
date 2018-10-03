@@ -26,7 +26,7 @@ def lstm_model_fn(features, labels, mode, params):
                                                  vocab_size=pm.N_WORDS,
                                                  embed_dim=embedding_size,
                                                  initializer=embedding_initializer,
-                                                 trainable=False)
+                                                 trainable=pm.TRAINABLE_GLOVE)
 
 
     # configure the RNN
