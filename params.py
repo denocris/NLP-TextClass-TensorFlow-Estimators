@@ -67,10 +67,10 @@ INFERENCE_DIR = os.path.join(os.getcwd(), 'inference_results/')
 # ------------------------------------
 # ------- TRAIN & VALID PATH ---------
 # ------------------------------------
-# TRAIN_DATA_FILES_PATTERN = os.path.join(os.getcwd(),'data/train-data-maxlength16-subtitles.tsv')
-# VALID_DATA_FILES_PATTERN = os.path.join(os.getcwd(),'data/valid-data-maxlength16-subtitles.tsv')
-# VOCAB_LIST_FILE = os.path.join(os.getcwd(),'vocab/vocab_list_5k_2k_mystop_nodgts.tsv')
-# N_WORDS_FILE = os.path.join(os.getcwd(),'vocab/n_words_5k_2k_mystop_nodgts.tsv')
+# TRAIN_DATA_FILES_PATTERN = os.path.join(os.getcwd(),'data_calendar/train-data-maxlength16-subtitles.tsv')
+# VALID_DATA_FILES_PATTERN = os.path.join(os.getcwd(),'data_calendar/valid-data-maxlength16-subtitles.tsv')
+# VOCAB_LIST_FILE = os.path.join(os.getcwd(),'data_calendar/vocab_list_5k_2k_mystop_nodgts.tsv')
+# N_WORDS_FILE = os.path.join(os.getcwd(),'data_calendar/n_words_5k_2k_mystop_nodgts.tsv')
 TRAIN_DATA_FILES_PATTERN = os.path.join(os.getcwd(),'data_six/train_data_length3-16_v1.tsv')
 VALID_DATA_FILES_PATTERN = os.path.join(os.getcwd(),'data_six/valid_data_length3-16_v1.tsv')
 VOCAB_LIST_FILE = os.path.join(os.getcwd(),'data_six/vocab_list_5k_v1.tsv')
